@@ -1,0 +1,61 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="registration-form">
+    <div class="container">
+        <h1>Регистрация</h1>
+        <mat-form-field>
+            <mat-label>Имя пользователя</mat-label>
+            <input matInput type="text" formControlName="username" placeholder="username"/>
+            <mat-icon matPrefix>account_box</mat-icon>
+            @if (registrationForm.controls['username'].hasError('required') && registrationForm.controls['username'].touched) {
+                <mat-error>Введите имя пользователя*</mat-error>
+            }
+
+            @if (registrationForm.controls['username'].hasError('minlength') && registrationForm.controls['username'].touched) {
+                <mat-error>Минимум 3 символа*</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="test@email.ru"/>
+            <mat-icon matPrefix>account_box</mat-icon>
+            @if (registrationForm.controls['email'].hasError('required') && registrationForm.controls['email'].touched) {
+                <mat-error>Введите Email*</mat-error>
+            }
+
+            @if (registrationForm.controls['email'].hasError('email') && registrationForm.controls['email'].touched) {
+                <mat-error>Введите корректный Email*</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Пароль</mat-label>
+            <input matInput type="password" formControlName="password" placeholder="qwerty12345"/>
+            <mat-icon matPrefix>lock</mat-icon>
+            @if (registrationForm.controls['password'].hasError('required') && registrationForm.controls['password'].touched) {
+                <mat-error>Введите пароль*</mat-error>
+            }
+
+            @if (registrationForm.controls['password'].hasError('minlength') && registrationForm.controls['password'].touched) {
+                <mat-error>Минимум 6 символов*</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Подтвердите пароль</mat-label>
+            <input matInput type="password" formControlName="confirmPassword" placeholder="qwerty12345"/>
+            <mat-icon matPrefix>lock</mat-icon>
+            @if (registrationForm.controls['confirmPassword'].hasError('required') && registrationForm.controls['confirmPassword'].touched) {
+                <mat-error>Подтвердите пароль*</mat-error>
+            }
+
+            @if (registrationForm.controls['confirmPassword'].hasError('minlength') && registrationForm.controls['confirmPassword'].touched) {
+                <mat-error>Минимум 6 символов*</mat-error>
+            }
+            @if (registrationForm.controls['confirmPassword'].hasError('passwordMismatch') && registrationForm.controls['confirmPassword'].touched) {
+                <mat-error>Пароль не совпадает*</mat-error>
+            }
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">Регистрация</button>
+    </div>
+</form>

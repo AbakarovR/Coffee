@@ -1,0 +1,40 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    <div class="container">
+        <h1>Вход в систему</h1>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="test@email.ru"/>
+            <mat-icon matPrefix>account_box</mat-icon>
+            @if (loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched) {
+                <mat-error>Введите email*</mat-error>
+            }
+
+            @if (loginForm.controls['email'].hasError('email') && loginForm.controls['email'].touched) {
+                <mat-error>Неправильный email*</mat-error>
+            }
+
+            @if (loginForm.controls['email'].hasError('pattern') && loginForm.controls['email'].touched) {
+                <mat-error>Некорректный email*</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Пароль</mat-label>
+            <input matInput type="password" formControlName="password" placeholder="qwerty12345"/>
+            <mat-icon matPrefix>lock</mat-icon>
+            @if (loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched) {
+                <mat-error>Введите пароль*</mat-error>
+            }
+
+            @if (loginForm.controls['password'].hasError('minlength') && loginForm.controls['password'].touched) {
+                <mat-error>Минимум 6 символов*</mat-error>
+            }
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Вход</button>
+
+        <nav>
+            <p>Нет аккаунта? <a routerLink="/registration">Зарегистрироваться</a></p>
+        </nav>
+    </div>
+</form>
