@@ -14,6 +14,5 @@ export const routes: Routes = [
             { path: 'new-orders', title: 'Новые заказы', loadComponent: () => import('./components/home/admin-panel/new-orders/new-orders').then(m => m.NewOrders) },
             { path: 'directories', title: 'Справочники', loadComponent: () => import('./components/home/admin-panel/directories/directories').then(m => m.Directories) },
         ]
-     },
-    {  path: '**', redirectTo: 'login' },
+    },
 ];
